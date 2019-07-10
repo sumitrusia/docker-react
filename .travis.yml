@@ -10,3 +10,18 @@ before_install:
 script:
 # - docker run sumitrusia/docker-react npm run test -- --coverage	
  - docker run -e CI=true sumitrusia/docker-react npm run test
+ 
+deploy:
+ provider: elasticbeanstalk
+ region: "ap-south-1"
+ app: "docker"
+ env: "Docker-env"
+ bucket_name: "elasticbeanstalk-ap-south-1-058045224827"
+ bucket_path: "docker"
+ on:
+  branch: master
+ access_key_id: $AWS_ACCESS_KEY
+ secret_access_key:
+  secure: "$AWS_SECRET_KEY"
+ 
+ 
